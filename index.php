@@ -1,5 +1,13 @@
 ﻿<?php 
 error_reporting(0);
+function auto($url){
+   $curl = curl_init();
+   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+   curl_setopt($curl, CURLOPT_URL, $url);
+   $ch = curl_exec($curl);
+   curl_close($curl);
+   return $ch;
+   }
 		function varokah($url) //Fungsi Bypass Captcha 
 	{
 			$ch = curl_init($url);
@@ -24,10 +32,10 @@ error_reporting(0);
 			fclose($handle);
  			shell_exec("convert ".$tmpFile." -colorspace Gray -depth 8 -resample 200x200 -verbose -antialias ".$tmpFile);
 			shell_exec("convert ".$tmpFile."  -resize 116x56\>  ".$tmpFile);
-			$cmd = "/vendor/tesseract-ocr/bin/tesseract $tmpFile $tmpFile";
+			$cmd = "/usr/bin/tesseract $tmpFile $tmpFile";
 			exec($cmd);
 			unlink($tmpFile);
-			$res = file_get_contents("$tmpFile.txt");
+			$res = auto("$tmpFile.txt");
 			unlink("$tmpFile.txt");
 			$capcay = trim(str_replace("\n\n","",$res,count($res)));
  
