@@ -1,5 +1,4 @@
-﻿<meta charset="utf-8">
-<?php 
+﻿<?php 
 /*
 * Simple Master OCR API PHP
 * With Imagemagick Converting
@@ -52,5 +51,5 @@ varokah($url);
 else
 {
 echo
-"Chả có cái mẹ gì ở đây đâu :P";
+"Ban muon mua tivi :P";
 }
