@@ -26,23 +26,18 @@ def not_found(error):
     resp.status_code = 404
     return resp
 
-@app.route('/test')
-def test():
-    resp = jsonify( {
-        coding: utf-8	
+@app.route('/')
+def api_root():
+    resp = jsonify( { 
         u'status': 200, 
-        u'message': u'Tôi Am BMN2312 :D' 
+        u'message': u'Welcome to our secret APIsz' 
     } )
     resp.status_code = 200
     return resp
 
-@app.route('/', methods = ['GET'])
-def api_root():
+@app.route('/test', methods = ['GET'])
+def test():
     return render_template('upload_form.html', landing_page = 'process')
-	
-#@app.route('/test', methods = ['GET'])
-#ef test():
-#    return render_template('upload_form.html', landing_page = 'process')
 
 @app.route('/process', methods = ['GET','POST'])
 def process():
@@ -67,7 +62,7 @@ def process():
                 f = open(output_file)
                 resp = jsonify( {
                     u'status': 200,
-                    u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().splitlines())}
+                    u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().upper())}
                 } )
             else:
                 resp = jsonify( {
