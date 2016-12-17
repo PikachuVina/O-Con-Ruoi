@@ -35,7 +35,7 @@ error_reporting(0);
 			fclose($handle);
  			shell_exec("convert ".$tmpFile." -colorspace Gray -depth 8 -resample 200x200 -verbose -antialias ".$tmpFile);
 			shell_exec("convert ".$tmpFile."  -resize 116x56\>  ".$tmpFile);
-			$cmd = "tesseract $tmpFile $tmpFile -l vie hocr";
+			$cmd = "tesseract $tmpFile $tmpFile -l vie";
 			exec($cmd);
 			unlink($tmpFile);
 			$res = file_get_contents("$tmpFile.txt");
