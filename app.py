@@ -5,6 +5,8 @@ import logging
 import shutil
 from flask import Flask, jsonify, render_template, request
 from werkzeug import secure_filename
+writer_factory = codecs.getwriter("utf-8")
+sys.stdout = writer_factory(sys.stdout)
 
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -30,7 +32,7 @@ def not_found(error):
 def api_root():
     resp = jsonify( { 
         u'status': 200, 
-        u'message': u'Welcome to our secret APIsz' 
+        u'message': u'Welcome to our secret APIs' 
     } )
     resp.status_code = 200
     return resp
@@ -62,7 +64,7 @@ def process():
                 f = open(output_file)
                 resp = jsonify( {
                     u'status': 200,
-                    u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().upper())}
+                    u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().splitlines())}
                 } )
             else:
                 resp = jsonify( {
