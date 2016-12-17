@@ -21,7 +21,7 @@ def allowed_file(filename):
 def not_found(error):
     resp = jsonify( { 
         u'status': 404, 
-        u'message': u'Resource not found' 
+        u'message': u'Không Tìm Thấy Mã Nguồn' 
     } )
     resp.status_code = 404
     return resp
