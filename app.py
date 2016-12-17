@@ -26,18 +26,23 @@ def not_found(error):
     resp.status_code = 404
     return resp
 
-@app.route('/')
-def api_root():
-    resp = jsonify( { 
+@app.route('/test')
+def test():
+    resp = jsonify( {
+        coding: utf-8	
         u'status': 200, 
-        u'message': u'I Am BMN2312 :D' 
+        u'message': u'Tôi Am BMN2312 :D' 
     } )
     resp.status_code = 200
     return resp
 
-@app.route('/test', methods = ['GET'])
-def test():
+@app.route('/', methods = ['GET'])
+def api_root():
     return render_template('upload_form.html', landing_page = 'process')
+	
+#@app.route('/test', methods = ['GET'])
+#ef test():
+#    return render_template('upload_form.html', landing_page = 'process')
 
 @app.route('/process', methods = ['GET','POST'])
 def process():
