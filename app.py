@@ -5,8 +5,6 @@ import logging
 import shutil
 from flask import Flask, jsonify, render_template, request
 from werkzeug import secure_filename
-writer_factory = codecs.getwriter("utf-8")
-sys.stdout = writer_factory(sys.stdout)
 
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -64,7 +62,7 @@ def process():
                 f = open(output_file)
                 resp = jsonify( {
                     u'status': 200,
-                    u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().splitlines())}
+                    u'ocr':{enumerate(f.read().splitlines())}
                 } )
             else:
                 resp = jsonify( {
