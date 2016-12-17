@@ -1,4 +1,4 @@
-import os
+﻿import os
 import subprocess
 import sys
 import logging
@@ -30,7 +30,7 @@ def not_found(error):
 def api_root():
     resp = jsonify( { 
         u'status': 200, 
-        u'message': u'Welcome to our secret APIs' 
+        u'message': u'Chào Bạn !!! Mình Là BMN.2312 :D' 
     } )
     resp.status_code = 200
     return resp
@@ -61,13 +61,13 @@ def process():
             if os.path.isfile(output_file):
                 f = open(output_file)
                 resp = jsonify( {
-                    u'status': 200,
+                    u'status': 'Thành Công',
                     u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().splitlines())}
                 } )
             else:
                 resp = jsonify( {
                     u'status': 422,
-                    u'message': u'Unprocessable Entity'
+                    u'message': u'Lỗi: Không Thể Xử Lý'
                 } )
                 resp.status_code = 422
             
@@ -76,14 +76,14 @@ def process():
         else:
             resp = jsonify( { 
                 u'status': 415,
-                u'message': u'Unsupported Media Type' 
+                u'message': u'Không Hỗ Trợ Tập Tin Media' 
             } )
             resp.status_code = 415
             return resp
     else:
         resp = jsonify( { 
             u'status': 405, 
-            u'message': u'The method is not allowed for the requested URL' 
+            u'message': u'Phương Pháp Này Không Hỗ Trợ URL' 
         } )
         resp.status_code = 405
         return resp
