@@ -21,7 +21,7 @@ def allowed_file(filename):
 def not_found(error):
     resp = jsonify( { 
         u'status': 404, 
-        u'message': u'Không Tìm Thấy Mã Nguồn' 
+        u'message': u'Resource not found' 
     } )
     resp.status_code = 404
     return resp
@@ -30,7 +30,7 @@ def not_found(error):
 def api_root():
     resp = jsonify( { 
         u'status': 200, 
-        u'message': u'Chào Bạn !!! Mình Là BMN.2312 :D' 
+        u'message': u'I Am BMN2312 :D' 
     } )
     resp.status_code = 200
     return resp
@@ -61,13 +61,13 @@ def process():
             if os.path.isfile(output_file):
                 f = open(output_file)
                 resp = jsonify( {
-                    u'status': 'Thành Công',
+                    u'status': 200,
                     u'ocr':{k:v.decode('utf-8') for k,v in enumerate(f.read().splitlines())}
                 } )
             else:
                 resp = jsonify( {
                     u'status': 422,
-                    u'message': u'Lỗi: Không Thể Xử Lý'
+                    u'message': u'Unprocessable Entity'
                 } )
                 resp.status_code = 422
             
@@ -76,14 +76,14 @@ def process():
         else:
             resp = jsonify( { 
                 u'status': 415,
-                u'message': u'Không Hỗ Trợ Tập Tin Media' 
+                u'message': u'Unsupported Media Type' 
             } )
             resp.status_code = 415
             return resp
     else:
         resp = jsonify( { 
             u'status': 405, 
-            u'message': u'Phương Pháp Này Không Hỗ Trợ URL' 
+            u'message': u'The method is not allowed for the requested URL' 
         } )
         resp.status_code = 405
         return resp
