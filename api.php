@@ -1,5 +1,5 @@
 ﻿<?php 
-//echo 'Pm Neu Muon Thue API';
+echo 'Pm Neu Muon Thue API';
 /*
 * Simple Master OCR API PHP
 * With Imagemagick Converting
@@ -10,7 +10,7 @@
 * Use For Host With Tesseract OCR
 * Did'nt Work For Hosting not support tesseract OCR
 * Install Tesseract : https://code.google.com/p/tesseract-ocr/wiki/Compiling
-*/
+*
 error_reporting(0);
 		function varokah($url) //Fungsi Bypass Captcha 
 	{
